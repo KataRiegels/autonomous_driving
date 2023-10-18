@@ -1,0 +1,38 @@
+{
+    "TestBehavior": {
+        "checkpoints": [
+            {
+                "steps": 499993,
+                "file_path": "results\\test10\\TestBehavior\\TestBehavior-499993.onnx",
+                "reward": -2.0,
+                "creation_time": 1697636449.0627441,
+                "auxillary_file_paths": [
+                    "results\\test10\\TestBehavior\\TestBehavior-499993.pt"
+                ]
+            },
+            {
+                "steps": 500035,
+                "file_path": "results\\test10\\TestBehavior\\TestBehavior-500035.onnx",
+                "reward": -2.0,
+                "creation_time": 1697636449.087886,
+                "auxillary_file_paths": [
+                    "results\\test10\\TestBehavior\\TestBehavior-500035.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 500035,
+            "file_path": "results\\test10\\TestBehavior.onnx",
+            "reward": -2.0,
+            "creation_time": 1697636449.087886,
+            "auxillary_file_paths": [
+                "results\\test10\\TestBehavior\\TestBehavior-500035.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "0.30.0",
+        "torch_version": "2.1.0+cpu"
+    }
+}
