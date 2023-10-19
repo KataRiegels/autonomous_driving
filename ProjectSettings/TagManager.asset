@@ -6,6 +6,9 @@ TagManager:
   tags:
   - goal
   - reset
+  - cpReward
+  - cpPunish
+  - car
   layers:
   - Default
   - TransparentFX

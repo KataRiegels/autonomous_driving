@@ -8,6 +8,8 @@ using Unity.MLAgents.Sensors;
 public class MoveToGoalAgent : Agent
 {
     private Vector3 initialPosition;
+    [SerializeField] private Transform targetTransform;
+    [SerializeField] private Checkpoint[] checkpoints;
     void Start()
     {
         initialPosition = transform.position;
@@ -15,8 +17,14 @@ public class MoveToGoalAgent : Agent
     public override void OnEpisodeBegin()
     {
         transform.position = initialPosition;
+
+        // Respawn all checkpoints in TrainingGround 
+        foreach (Checkpoint checkpoint in checkpoints)
+        {
+            checkpoint.ActivateCheckpoints();
+        }
     }
-    [SerializeField] private Transform targetTransform;
+   
     public override void CollectObservations(VectorSensor sensor)
     {
         sensor.AddObservation((Vector3)transform.localPosition);
@@ -44,13 +52,21 @@ public class MoveToGoalAgent : Agent
     {
         if (other.TryGetComponent<GreenWall>(out GreenWall greenWall)) 
         {
-            AddReward(+10f);
+            AddReward(+30f);
             EndEpisode();
         }
-        if (other.TryGetComponent<RedWall>(out RedWall redwall)) 
+        else if (other.TryGetComponent<RedWall>(out RedWall redwall)) 
         {
-            AddReward(-2f);
+            AddReward(-10f);
             EndEpisode();
+        }
+        else if (other.TryGetComponent<CPReward>(out CPReward cpReward)) 
+        {
+            AddReward(+5f);
+        }
+        else if (other.TryGetComponent<CPPunish>(out CPPunish cpPunish)) 
+        {
+            AddReward(-8f);
         }
     }
 }

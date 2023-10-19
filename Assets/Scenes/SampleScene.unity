@@ -179,6 +179,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TrainingGround (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 8377731113747910850, guid: 5cdce5039a45c6b4386caf54bb1b1414, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -239,6 +243,10 @@ PrefabInstance:
     - target: {fileID: 8377731113747910850, guid: 5cdce5039a45c6b4386caf54bb1b1414, type: 3}
       propertyPath: m_Name
       value: TrainingGround (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8377731113747910850, guid: 5cdce5039a45c6b4386caf54bb1b1414, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -301,6 +309,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TrainingGround (8)
       objectReference: {fileID: 0}
+    - target: {fileID: 8377731113747910850, guid: 5cdce5039a45c6b4386caf54bb1b1414, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -361,6 +373,10 @@ PrefabInstance:
     - target: {fileID: 8377731113747910850, guid: 5cdce5039a45c6b4386caf54bb1b1414, type: 3}
       propertyPath: m_Name
       value: TrainingGround (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8377731113747910850, guid: 5cdce5039a45c6b4386caf54bb1b1414, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -516,6 +532,10 @@ PrefabInstance:
     - target: {fileID: 8377731113747910850, guid: 5cdce5039a45c6b4386caf54bb1b1414, type: 3}
       propertyPath: m_Name
       value: TrainingGround (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8377731113747910850, guid: 5cdce5039a45c6b4386caf54bb1b1414, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -675,7 +695,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 03a6f7fe3ae2cdd43a0049f692538c5d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -776,6 +796,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TrainingGround (9)
       objectReference: {fileID: 0}
+    - target: {fileID: 8377731113747910850, guid: 5cdce5039a45c6b4386caf54bb1b1414, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -836,6 +860,10 @@ PrefabInstance:
     - target: {fileID: 8377731113747910850, guid: 5cdce5039a45c6b4386caf54bb1b1414, type: 3}
       propertyPath: m_Name
       value: TrainingGround (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8377731113747910850, guid: 5cdce5039a45c6b4386caf54bb1b1414, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -898,6 +926,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TrainingGround (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 8377731113747910850, guid: 5cdce5039a45c6b4386caf54bb1b1414, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -959,6 +991,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TrainingGround (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 8377731113747910850, guid: 5cdce5039a45c6b4386caf54bb1b1414, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -972,6 +1008,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 488107151696775114, guid: 5cdce5039a45c6b4386caf54bb1b1414, type: 3}
+      propertyPath: m_BehaviorType
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 488107151696775114, guid: 5cdce5039a45c6b4386caf54bb1b1414, type: 3}
       propertyPath: m_BrainParameters.NumStackedVectorObservations
       value: 1
