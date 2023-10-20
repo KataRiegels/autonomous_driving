@@ -107,6 +107,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Checkpoint (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 824899895811433871, guid: f3f6bee5d3064b742b7cf816725393f8, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 824899895811433871, guid: f3f6bee5d3064b742b7cf816725393f8, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 1985463873653658552, guid: f3f6bee5d3064b742b7cf816725393f8, type: 3}
       propertyPath: m_LocalPosition.x
       value: -8.32
@@ -146,6 +154,14 @@ PrefabInstance:
     - target: {fileID: 1985463873653658552, guid: f3f6bee5d3064b742b7cf816725393f8, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4688363844575116872, guid: f3f6bee5d3064b742b7cf816725393f8, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4688363844575116872, guid: f3f6bee5d3064b742b7cf816725393f8, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

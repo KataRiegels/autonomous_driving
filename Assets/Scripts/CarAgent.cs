@@ -5,22 +5,24 @@ using Unity.MLAgents.Actuators;
 
 public class CarAgent : Agent
 {
-    private SimpleCarController carController;
+    //private SimpleCarController carController;
+    private TestControls testControls;
     private Vector3 initialPosition;
     private Quaternion initialRotation;
     //[System.Serializable]
     //public GameObject[] tracks;
     
-    [System.Serializable]
-    public class Rewards
+    //[System.Serializable]
+    /*public class Rewards
     {
         public float greenWall = 0.1f;
         public float redWall = -0.01f;
-    }
-    public Rewards reward = new Rewards();
+    }*/
+    //public Rewards reward = new Rewards();
     private void Start()
     {
-        carController = GetComponent<SimpleCarController>();
+        //carController = GetComponent<SimpleCarController>();
+        testControls = GetComponent<TestControls>();
         
         // Store the initial position and rotation
         initialPosition = transform.position;
@@ -37,7 +39,7 @@ public class CarAgent : Agent
         transform.rotation = initialRotation;
 
         // Reset the car's speed to 0
-        carController.ResetSpeed();
+        testControls.ResetSpeed();
         
         // Activate tires
         //foreach (var obj in tracks)
@@ -48,10 +50,10 @@ public class CarAgent : Agent
 
     }
 
-    public override void CollectObservations(VectorSensor sensor)
+    /*public override void CollectObservations(VectorSensor sensor)
     {
-        sensor.AddObservation(carController.currentSpeed / carController.maxSpeed);
-    }
+        sensor.AddObservation(testControls.currentSpeed / testControls.maxSpeed);
+    }*/
 
     public override void OnActionReceived(ActionBuffers actionBuffers)
     {
@@ -59,11 +61,11 @@ public class CarAgent : Agent
         float steeringInput = Mathf.Clamp(actionBuffers.ContinuousActions[1], -1f, 1f);
 
         // Use the inputs of our car controller script
-        carController.ApplyAcceleration(accelerationInput);
-        carController.ApplySteering(steeringInput);
+        testControls.ApplyAcceleration(accelerationInput);
+        testControls.ApplySteering(steeringInput);
 
         // Add a small penalty for every action taken (every time step)
-        AddReward(-0.001f);
+        //AddReward(-0.001f);
 
     }
 
@@ -76,7 +78,7 @@ public class CarAgent : Agent
         actionsOut.ContinuousActions.Array[1] = steeringInput;
     }
 
-    public void OnCollisionEnter(Collision collision)
+    /*public void OnCollisionEnter(Collision collision)
     {
         //Debug.Log("Collision detected with: " + collision.gameObject.tag);
         if (collision.gameObject.CompareTag("GreenWall"))
@@ -108,5 +110,5 @@ public class CarAgent : Agent
             EndEpisode();
 
         }
-    }
+    }*/
 }
