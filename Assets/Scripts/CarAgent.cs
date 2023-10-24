@@ -63,6 +63,7 @@ public class CarAgent : Agent
         // Use the inputs of our car controller script
         testControls.ApplyAcceleration(accelerationInput);
         testControls.ApplySteering(steeringInput);
+        // testControls.ApplyBraking
 
         // Add a small penalty for every action taken (every time step)
         //AddReward(-0.001f);
@@ -71,9 +72,23 @@ public class CarAgent : Agent
 
     public override void Heuristic(in ActionBuffers actionsOut)
     {
+
+        Debug.Log(Input.GetKeyDown(KeyCode.A));
+        if (Input.GetKeyDown(KeyCode.A)) {      
+        
+          
+          }
+
+        // if (Input.GetKeyDown(KeyCode.A)) {      
+        
+        //     Debug.log("Input.GetKeyDown(KeyCode.A)");
+          
+        //   };
         float accelerationInput = Input.GetAxis("Vertical");
         float steeringInput = Input.GetAxis("Horizontal");
 
+        // testControls.ApplyAcceleration(accelerationInput);
+        // testControls.ApplySteering(steeringInput);
         actionsOut.ContinuousActions.Array[0] = accelerationInput;
         actionsOut.ContinuousActions.Array[1] = steeringInput;
     }
