@@ -9,9 +9,11 @@ public class CarAgent : Agent
     private TestControls testControls;
     private Vector3 initialPosition;
     private Quaternion initialRotation;
+    public float steeringInput = 0f;
+    public float brakeInput = 0f;
     //[System.Serializable]
     //public GameObject[] tracks;
-    
+
     //[System.Serializable]
     /*public class Rewards
     {
@@ -23,24 +25,25 @@ public class CarAgent : Agent
     {
         //carController = GetComponent<SimpleCarController>();
         testControls = GetComponent<TestControls>();
-        
+
         // Store the initial position and rotation
         initialPosition = transform.position;
         initialRotation = transform.rotation;
 
     }
 
+
     public override void OnEpisodeBegin()
     {   // Reset the environment for the next episode here
         //Debug.Log("Episode began, resetting agent");  // Check reset
-        
+
         // Reset the car's position and rotation to it's initial state
         transform.position = initialPosition;
         transform.rotation = initialRotation;
 
         // Reset the car's speed to 0
         testControls.ResetSpeed();
-        
+
         // Activate tires
         //foreach (var obj in tracks)
         //{
@@ -58,12 +61,15 @@ public class CarAgent : Agent
     public override void OnActionReceived(ActionBuffers actionBuffers)
     {
         float accelerationInput = Mathf.Clamp(actionBuffers.ContinuousActions[0], -1f, 1f);
-        float steeringInput = Mathf.Clamp(actionBuffers.ContinuousActions[1], -1f, 1f);
+        //float steeringInput = Mathf.Clamp(actionBuffers.ContinuousActions[1], -1f, 1f);
+        steeringInput = Mathf.Clamp(actionBuffers.ContinuousActions[1], -1f, 1f);
+        brakeInput = Mathf.Clamp(actionBuffers.ContinuousActions[2], 0f, 1f);
 
         // Use the inputs of our car controller script
         testControls.ApplyAcceleration(accelerationInput);
         testControls.ApplySteering(steeringInput);
-        // testControls.ApplyBraking
+        testControls.ApplyBraking(brakeInput);
+        // testControls.ApplyBrakingw
 
         // Add a small penalty for every action taken (every time step)
         //AddReward(-0.001f);
@@ -72,25 +78,49 @@ public class CarAgent : Agent
 
     public override void Heuristic(in ActionBuffers actionsOut)
     {
-
-        Debug.Log(Input.GetKeyDown(KeyCode.A));
-        if (Input.GetKeyDown(KeyCode.A)) {      
-        
-          
-          }
-
-        // if (Input.GetKeyDown(KeyCode.A)) {      
-        
-        //     Debug.log("Input.GetKeyDown(KeyCode.A)");
-          
-        //   };
         float accelerationInput = Input.GetAxis("Vertical");
-        float steeringInput = Input.GetAxis("Horizontal");
+
+        if (Input.GetKey(KeyCode.Space))
+        {
+            brakeInput = 0.5f;
+        } else { brakeInput = 0f; }
+        //float steeringInput = Input.GetAxis("Horizontal");
+        if (Input.GetKey(KeyCode.Alpha1))
+
+        {
+            steeringInput = -1f;
+               testControls.CalculateSteering(steeringInput);
+        }
+        if (Input.GetKey(KeyCode.Alpha2))
+        {
+            steeringInput = -0.5f;
+               testControls.CalculateSteering(steeringInput);
+        }
+        if (Input.GetKey(KeyCode.Alpha3))
+        {
+            steeringInput = 0f;
+               testControls.CalculateSteering(steeringInput);
+        }
+        if (Input.GetKey(KeyCode.Alpha4))
+        {
+            steeringInput = 0.5f;
+               testControls.CalculateSteering(steeringInput);
+        }
+        if (Input.GetKey(KeyCode.Alpha5))
+        {
+            steeringInput = 1f;
+               testControls.CalculateSteering(steeringInput);
+        }
+        if (Input.GetKey(KeyCode.Q))
+        {
+            OnEpisodeBegin();
+        }
 
         // testControls.ApplyAcceleration(accelerationInput);
         // testControls.ApplySteering(steeringInput);
         actionsOut.ContinuousActions.Array[0] = accelerationInput;
         actionsOut.ContinuousActions.Array[1] = steeringInput;
+        actionsOut.ContinuousActions.Array[2] = brakeInput;
     }
 
     /*public void OnCollisionEnter(Collision collision)

@@ -88,3 +88,4 @@ ProjectSettings/Packages/com.unity.testtools.codecoverage/Settings.json
 ProjectSettings/Packages/com.unity.testtools.codecoverage
 
 .fake
+Assets/ML-Agents/Timers/SampleScene_timers.json

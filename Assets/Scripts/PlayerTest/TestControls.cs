@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
 
 public class TestControls : MonoBehaviour
@@ -17,6 +18,7 @@ public class TestControls : MonoBehaviour
     public float currentSpeed { get; private set; }
     public float currentAngle {get; private set;}
     public float currentAngleChange {get; private set;}
+    public float currentDesiredAngle {get; private set;}
 
     void FixedUpdate()
     {
@@ -24,7 +26,7 @@ public class TestControls : MonoBehaviour
         if (Mathf.Abs(currentSpeed) < 0.1f)
         {
             float drag = dragFactor * Time.deltaTime;
-            currentSpeed = Mathf.MoveTowards(currentSpeed, 0, drag);
+            currentSpeed = Mathf.MoveTowards(currentSpeed*Time.deltaTime, 0, drag);
         }
 
         // Update the car's position
@@ -36,9 +38,10 @@ public class TestControls : MonoBehaviour
 
         float speedToSub = 0;
         float brakeConst = brakeForce;
-        speedToSub = brakeConst * brakePedal;
-
-        currentSpeed -= speedToSub;
+        speedToSub = brakeConst * brakePedal/currentSpeed;
+        Debug.Log(speedToSub);
+        currentSpeed = Mathf.MoveTowards(currentSpeed, 0, speedToSub);    
+        //currentSpeed = speedToSub;
 
     }
 
@@ -55,6 +58,7 @@ public class TestControls : MonoBehaviour
         }
 
         currentSpeed += speedToAdd; 
+        currentSpeed = Mathf.Clamp(currentSpeed, -maxSpeed, maxSpeed);
 
 
 
@@ -85,31 +89,48 @@ public class TestControls : MonoBehaviour
 */
     }
 
+    public void CalculateSteering(float input)
+    {
+
+        float constSpeedInfluence = 1; 
+        // float maxAngleWithSpeed =  maxAngle * (constSpeedInfluence * Mathf.Exp(-Mathf.Abs(currentSpeed)));
+        // float desiredAngleInput = input * maxAngle * constSpeedInfluence * Mathf.Exp(Mathf.Abs(currentSpeed));
+        float maxAngleWithSpeed =  maxAngle * (math.pow(constSpeedInfluence, -Mathf.Abs(currentSpeed)*constSpeedInfluence ));
+        //float desiredAngleInput = input * maxAngleWithSpeed;
+
+        // How much the agent attempts to change the steering angle
+        float desiredAngleInput = Mathf.Clamp(input, -1f, 1f) * 60;
+        currentDesiredAngle = desiredAngleInput;
+        Debug.Log("DesAng:" + desiredAngleInput);
+        Debug.Log("Current: " + currentAngle);
+        float constAppliedSteering = 1.03f;
+        //Debug.Log("Mathf.Abs(currentAngle - desiredAngleInput): " + (currentAngle - desiredAngleInput));
+        //float appliedSteeringWeight = 0.1f* Mathf.Exp(constAppliedSteering * Mathf.Abs(currentAngle - desiredAngleInput));
+        float appliedSteeringWeight = 0.5f * math.pow(constAppliedSteering, Mathf.Abs(currentAngle - desiredAngleInput));
+        //Debug.Log("appliedSteeringWeight: " + appliedSteeringWeight);
+        currentAngleChange = appliedSteeringWeight;
+        Debug.Log("CurrentAngChange: " + currentAngleChange);
+
+    }
+
+
     public void ApplySteering(float input)
     {
 
         
-        float constSpeedInfluence = 2/(Mathf.Exp(100)); 
-        // float maxAngleWithSpeed =  maxAngle * (constSpeedInfluence * Mathf.Exp(-Mathf.Abs(currentSpeed)));
-        // float desiredAngleInput = input * maxAngle * constSpeedInfluence * Mathf.Exp(Mathf.Abs(currentSpeed));
-        float maxAngleWithSpeed =  maxAngle * (Mathf.Exp(-Mathf.Abs(currentSpeed)*constSpeedInfluence ));
-        float desiredAngleInput = input * maxAngleWithSpeed;
-
-        // How much the agent attempts to change the steering angle
-        float constAppliedSteering = 1;
-        float appliedSteeringWeight = constAppliedSteering * Mathf.Exp(Mathf.Abs(currentAngle - desiredAngleInput));        
-
         // effect from the car's speed
         // float speedInfluence = constSpeedInfluence * Mathf.Exp(Mathf.Abs(currentSpeed));
         // float deltaAngleWeight = appliedSteeringWeight - speedInfluence;
 
         // the change to apply
-        float deltaAngleWeight = appliedSteeringWeight;
+        //float deltaAngleWeight = appliedSteeringWeight;
+        float deltaAngleWeight = currentAngleChange;
+        float desiredAngleInput = currentDesiredAngle;
 
         // the new angle should be 
-        float newAngle = Mathf.MoveTowardsAngle(currentAngle, desiredAngleInput , deltaAngleWeight); 
+        float newAngle = Mathf.MoveTowards(currentAngle, desiredAngleInput , deltaAngleWeight);
         currentAngle = newAngle;
-        // transform.Rotate(0, newAngle, 0);
+        transform.Rotate(0, currentAngle * Time.deltaTime, 0);
 
 
 /*
