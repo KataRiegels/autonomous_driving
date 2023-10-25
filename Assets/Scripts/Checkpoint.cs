@@ -8,7 +8,13 @@ public class Checkpoint : MonoBehaviour
     void OnTriggerEnter(Collider other)
     {
         // Check if the collided object contains the "CarAgent" component
-        if (other.TryGetComponent<MoveToGoalAgent>(out MoveToGoalAgent moveToGoalAgent))
+        if (other.TryGetComponent<CarAgent>(out CarAgent carAgent))
+        {
+            // Disable this object (the one with the Checkpoint script attached)
+            gameObject.SetActive(false);
+        }
+        // If not CarAgent, check if it's MoveToGoalAgent
+        else if (other.TryGetComponent<MoveToGoalAgent>(out MoveToGoalAgent moveToGoalAgent))
         {
             // Disable this object (the one with the Checkpoint script attached)
             gameObject.SetActive(false);
@@ -20,5 +26,4 @@ public class Checkpoint : MonoBehaviour
     {
         gameObject.SetActive(true);
     }
-
 }

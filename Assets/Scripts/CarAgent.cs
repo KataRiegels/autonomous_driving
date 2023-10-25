@@ -1,114 +1,90 @@
 using UnityEngine;
 using Unity.MLAgents;
-using Unity.MLAgents.Sensors;
 using Unity.MLAgents.Actuators;
+using Unity.MLAgents.Sensors;
 
 public class CarAgent : Agent
 {
-    //private SimpleCarController carController;
-    private TestControls testControls;
+    [Header("Agent Parameters")]
     private Vector3 initialPosition;
     private Quaternion initialRotation;
-    //[System.Serializable]
-    //public GameObject[] tracks;
-    
-    //[System.Serializable]
-    /*public class Rewards
-    {
-        public float greenWall = 0.1f;
-        public float redWall = -0.01f;
-    }*/
-    //public Rewards reward = new Rewards();
+    [SerializeField] private Transform targetTransform;
+    [SerializeField] private Checkpoint[] checkpoints;
+    private TestControls carControls;  // Reference to the TestControls script
+
     private void Start()
     {
-        //carController = GetComponent<SimpleCarController>();
-        testControls = GetComponent<TestControls>();
-        
-        // Store the initial position and rotation
         initialPosition = transform.position;
         initialRotation = transform.rotation;
-
+        carControls = GetComponent<TestControls>();  // Get the TestControls component attached to the same GameObject
     }
 
     public override void OnEpisodeBegin()
-    {   // Reset the environment for the next episode here
-        //Debug.Log("Episode began, resetting agent");  // Check reset
-        
-        // Reset the car's position and rotation to it's initial state
+    {
         transform.position = initialPosition;
         transform.rotation = initialRotation;
-
-        // Reset the car's speed to 0
-        testControls.ResetSpeed();
-        
-        // Activate tires
-        //foreach (var obj in tracks)
-        //{
-        //    obj.SetActive(true);
-        //}
-
-
+        carControls.ResetControls();
+        foreach (Checkpoint checkpoint in checkpoints)
+        {
+            checkpoint.ActivateCheckpoints();
+        }
     }
 
-    /*public override void CollectObservations(VectorSensor sensor)
+    public override void CollectObservations(VectorSensor sensor)
     {
-        sensor.AddObservation(testControls.currentSpeed / testControls.maxSpeed);
-    }*/
+        sensor.AddObservation(transform.localPosition);
+        sensor.AddObservation(targetTransform.localPosition);
+    }
 
-    public override void OnActionReceived(ActionBuffers actionBuffers)
+    public override void OnActionReceived(ActionBuffers actions)
     {
-        float accelerationInput = Mathf.Clamp(actionBuffers.ContinuousActions[0], -1f, 1f);
-        float steeringInput = Mathf.Clamp(actionBuffers.ContinuousActions[1], -1f, 1f);
+        // Extract the actions
+        float accelerationInput = Mathf.Clamp(actions.ContinuousActions[0], -1f, 1f);
+        float steeringInput = Mathf.Clamp(actions.ContinuousActions[1], -1f, 1f);
+        float brakingInput = Mathf.Clamp(actions.ContinuousActions[2], 0f, 1f);
 
-        // Use the inputs of our car controller script
-        testControls.ApplyAcceleration(accelerationInput);
-        testControls.ApplySteering(steeringInput);
+        // Log the input values
+        Debug.Log("Acceleration Input: " + accelerationInput);
+        Debug.Log("Steering Input: " + steeringInput);
+        Debug.Log("Braking Input: " + brakingInput);
 
-        // Add a small penalty for every action taken (every time step)
-        //AddReward(-0.001f);
+        // Call the TestControls methods based on the received actions
+        carControls.HandleAcceleration(accelerationInput);
+        carControls.HandleSteering(steeringInput);
+        carControls.HandleBraking(brakingInput);
 
+        // Punish it for being passive.
+        AddReward(-0.00001f);
     }
 
     public override void Heuristic(in ActionBuffers actionsOut)
     {
-        float accelerationInput = Input.GetAxis("Vertical");
-        float steeringInput = Input.GetAxis("Horizontal");
-
-        actionsOut.ContinuousActions.Array[0] = accelerationInput;
-        actionsOut.ContinuousActions.Array[1] = steeringInput;
+        ActionSegment<float> continuousActions = actionsOut.ContinuousActions;
+        continuousActions[0] = Input.GetAxisRaw("Vertical");  // Acceleration
+        continuousActions[1] = Input.GetAxisRaw("Horizontal");  // Steering
+        continuousActions[2] = Input.GetKey(KeyCode.Space) ? 1f : 0f;  // Braking
     }
 
-    /*public void OnCollisionEnter(Collision collision)
+    // Collision logic
+    private void OnTriggerEnter(Collider other)
     {
-        //Debug.Log("Collision detected with: " + collision.gameObject.tag);
-        if (collision.gameObject.CompareTag("GreenWall"))
+        if (other.TryGetComponent<GreenWall>(out GreenWall greenWall)) 
         {
-            Debug.Log("Collided with GreenWall");
-            AddReward(reward.greenWall);
-
-            // De-activate tires
-            //foreach (var obj in tracks)
-            //{
-            //    obj.SetActive(false);
-            //}
-            //
-            //EndEpisode();
-
-
-        }
-        else if (collision.gameObject.CompareTag("RedWall"))
-        {
-            Debug.Log("Collided with RedWall");
-            AddReward(reward.redWall);
-
-            // De-activate tires
-            //foreach (var obj in tracks)
-            //{
-            //    obj.SetActive(false);
-            //}
-
+            AddReward(+30f);
             EndEpisode();
-
         }
-    }*/
+        else if (other.TryGetComponent<RedWall>(out RedWall redwall)) 
+        {
+            AddReward(-10f);
+            EndEpisode();
+        }
+        else if (other.TryGetComponent<CPReward>(out CPReward cpReward)) 
+        {
+            AddReward(+5f);
+        }
+        else if (other.TryGetComponent<CPPunish>(out CPPunish cpPunish)) 
+        {
+            AddReward(-8f);
+        }
+    }
 }

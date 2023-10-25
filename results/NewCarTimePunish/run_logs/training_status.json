@@ -1,0 +1,65 @@
+{
+    "My Behavior": {
+        "checkpoints": [
+            {
+                "steps": 500020,
+                "file_path": "results\\NewCarTimePunish\\My Behavior\\My Behavior-500020.onnx",
+                "reward": null,
+                "creation_time": 1698250963.7897935,
+                "auxillary_file_paths": [
+                    "results\\NewCarTimePunish\\My Behavior\\My Behavior-500020.pt"
+                ]
+            },
+            {
+                "steps": 500020,
+                "file_path": "results\\NewCarTimePunish\\My Behavior\\My Behavior-500020.onnx",
+                "reward": null,
+                "creation_time": 1698251010.2792575,
+                "auxillary_file_paths": [
+                    "results\\NewCarTimePunish\\My Behavior\\My Behavior-500020.pt"
+                ]
+            },
+            {
+                "steps": 500020,
+                "file_path": "results\\NewCarTimePunish\\My Behavior\\My Behavior-500020.onnx",
+                "reward": null,
+                "creation_time": 1698251165.1762998,
+                "auxillary_file_paths": [
+                    "results\\NewCarTimePunish\\My Behavior\\My Behavior-500020.pt"
+                ]
+            },
+            {
+                "steps": 500020,
+                "file_path": "results\\NewCarTimePunish\\My Behavior\\My Behavior-500020.onnx",
+                "reward": null,
+                "creation_time": 1698251365.0173717,
+                "auxillary_file_paths": [
+                    "results\\NewCarTimePunish\\My Behavior\\My Behavior-500020.pt"
+                ]
+            },
+            {
+                "steps": 500020,
+                "file_path": "results\\NewCarTimePunish\\My Behavior\\My Behavior-500020.onnx",
+                "reward": null,
+                "creation_time": 1698251703.6501732,
+                "auxillary_file_paths": [
+                    "results\\NewCarTimePunish\\My Behavior\\My Behavior-500020.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 500020,
+            "file_path": "results\\NewCarTimePunish\\My Behavior.onnx",
+            "reward": null,
+            "creation_time": 1698251703.6501732,
+            "auxillary_file_paths": [
+                "results\\NewCarTimePunish\\My Behavior\\My Behavior-500020.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "0.30.0",
+        "torch_version": "2.1.0+cpu"
+    }
+}

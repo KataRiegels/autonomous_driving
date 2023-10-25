@@ -1,0 +1,54 @@
+{
+    "name": "root",
+    "metadata": {
+        "timer_format_version": "0.1.0",
+        "start_time_seconds": "1698252360",
+        "python_version": "3.9.13 (tags/v3.9.13:6de2ca5, May 17 2022, 16:36:42) [MSC v.1929 64 bit (AMD64)]",
+        "command_line_arguments": "C:\\Users\\nikol\\Unity_Projects\\MlAgents\\venv\\Scripts\\mlagents-learn --run-id=NewCarTest --resume",
+        "mlagents_version": "0.30.0",
+        "mlagents_envs_version": "0.30.0",
+        "communication_protocol_version": "1.5.0",
+        "pytorch_version": "2.1.0+cpu",
+        "numpy_version": "1.21.2",
+        "end_time_seconds": "1698252374"
+    },
+    "total": 13.923486,
+    "count": 1,
+    "self": 0.005034999999999457,
+    "children": {
+        "run_training.setup": {
+            "total": 0.03007269999999984,
+            "count": 1,
+            "self": 0.03007269999999984
+        },
+        "TrainerController.start_learning": {
+            "total": 13.888378300000001,
+            "count": 1,
+            "self": 9.239999999799409e-05,
+            "children": {
+                "TrainerController._reset_env": {
+                    "total": 13.8274607,
+                    "count": 1,
+                    "self": 13.8274607
+                },
+                "trainer_threads": {
+                    "total": 8.000000022434506e-07,
+                    "count": 1,
+                    "self": 8.000000022434506e-07
+                },
+                "TrainerController._save_models": {
+                    "total": 0.06082440000000133,
+                    "count": 1,
+                    "self": 0.007456400000002361,
+                    "children": {
+                        "RLTrainer._checkpoint": {
+                            "total": 0.05336799999999897,
+                            "count": 1,
+                            "self": 0.05336799999999897
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
