@@ -1,23 +1,23 @@
 {
-    "TestBehavior": {
+    "Car2": {
         "checkpoints": [
             {
-                "steps": 441411,
-                "file_path": "results\\ppo\\TestBehavior\\TestBehavior-441411.onnx",
-                "reward": null,
-                "creation_time": 1697653063.8789346,
+                "steps": 121919,
+                "file_path": "results\\ppo\\Car2\\Car2-121919.onnx",
+                "reward": 63.953376333006716,
+                "creation_time": 1698415850.9683275,
                 "auxillary_file_paths": [
-                    "results\\ppo\\TestBehavior\\TestBehavior-441411.pt"
+                    "results\\ppo\\Car2\\Car2-121919.pt"
                 ]
             }
         ],
         "final_checkpoint": {
-            "steps": 441411,
-            "file_path": "results\\ppo\\TestBehavior.onnx",
-            "reward": null,
-            "creation_time": 1697653063.8789346,
+            "steps": 121919,
+            "file_path": "results\\ppo\\Car2.onnx",
+            "reward": 63.953376333006716,
+            "creation_time": 1698415850.9683275,
             "auxillary_file_paths": [
-                "results\\ppo\\TestBehavior\\TestBehavior-441411.pt"
+                "results\\ppo\\Car2\\Car2-121919.pt"
             ]
         }
     },

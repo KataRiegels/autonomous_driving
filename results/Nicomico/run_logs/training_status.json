@@ -1,0 +1,38 @@
+{
+    "Car2": {
+        "checkpoints": [
+            {
+                "steps": 499984,
+                "file_path": "results\\Nicomico\\Car2\\Car2-499984.onnx",
+                "reward": 73.37971825795631,
+                "creation_time": 1698340280.1976733,
+                "auxillary_file_paths": [
+                    "results\\Nicomico\\Car2\\Car2-499984.pt"
+                ]
+            },
+            {
+                "steps": 500022,
+                "file_path": "results\\Nicomico\\Car2\\Car2-500022.onnx",
+                "reward": 73.40739684850992,
+                "creation_time": 1698340280.2320065,
+                "auxillary_file_paths": [
+                    "results\\Nicomico\\Car2\\Car2-500022.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 500022,
+            "file_path": "results\\Nicomico\\Car2.onnx",
+            "reward": 73.40739684850992,
+            "creation_time": 1698340280.2320065,
+            "auxillary_file_paths": [
+                "results\\Nicomico\\Car2\\Car2-500022.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "0.30.0",
+        "torch_version": "2.1.0+cpu"
+    }
+}

@@ -1,0 +1,29 @@
+{
+    "Car2": {
+        "checkpoints": [
+            {
+                "steps": 60800,
+                "file_path": "results\\LOL\\Car2\\Car2-60800.onnx",
+                "reward": null,
+                "creation_time": 1698266442.5972936,
+                "auxillary_file_paths": [
+                    "results\\LOL\\Car2\\Car2-60800.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 60800,
+            "file_path": "results\\LOL\\Car2.onnx",
+            "reward": null,
+            "creation_time": 1698266442.5972936,
+            "auxillary_file_paths": [
+                "results\\LOL\\Car2\\Car2-60800.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "0.30.0",
+        "torch_version": "2.1.0+cpu"
+    }
+}

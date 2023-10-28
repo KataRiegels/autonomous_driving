@@ -668,6 +668,7 @@ MonoBehaviour:
   wheels:
   - {fileID: 7489460257777746665}
   - {fileID: 4778763604076149732}
+  currentSpeed: 0
 --- !u!114 &477605315936885624
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -681,7 +682,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BrainParameters:
-    VectorObservationSize: 6
+    VectorObservationSize: 0
     NumStackedVectorObservations: 1
     m_ActionSpec:
       m_NumContinuousActions: 3
@@ -755,7 +756,7 @@ MonoBehaviour:
   m_RayLayerMask:
     serializedVersion: 2
     m_Bits: 64
-  m_ObservationStacks: 1
+  m_ObservationStacks: 16
   rayHitColor: {r: 1, g: 0, b: 0, a: 1}
   rayMissColor: {r: 1, g: 1, b: 1, a: 1}
   m_StartVerticalOffset: 0

@@ -12,7 +12,7 @@ public class TestControls : MonoBehaviour
     public float maxTurnSpeed = 30f;
     public Transform[] wheels;
 
-    private float currentSpeed = 0f;
+    public float currentSpeed = 0f;
     private float currentAngle = 0f;
 
     void FixedUpdate()
@@ -45,8 +45,8 @@ public class TestControls : MonoBehaviour
         float currentTurningSpeed = k * difference;
         currentTurningSpeed = Mathf.Clamp(currentTurningSpeed, -maxTurnSpeed, maxTurnSpeed);
         currentAngle += currentTurningSpeed * Time.deltaTime;
-        Debug.Log("Desired Angle: " + desiredAngle);
-        Debug.Log("Current Angle: " + currentAngle);
+        //Debug.Log("Desired Angle: " + desiredAngle);
+        //Debug.Log("Current Angle: " + currentAngle);
 
 
         foreach (Transform wheel in wheels)
