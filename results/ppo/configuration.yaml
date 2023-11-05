@@ -1,24 +1,24 @@
 default_settings: null
 behaviors:
   TestBehavior:
-    trainer_type: ppo
+    trainer_type: ppo #Specific trainer PPO, SAC or POCA - PPO is default
     hyperparameters:
       batch_size: 1024
       buffer_size: 10240
-      learning_rate: 0.0003
-      beta: 0.005
-      epsilon: 0.2
-      lambd: 0.95
+      learning_rate: 0.0003 #Default value
+      beta: 0.005 #"Amount" of entropy in model - Makes it more random the bigger the number - 0.005 is default
+      epsilon: 0.2 #How fast can the policy change during training - Default value
+      lambd: 0.95 #Something about how much the model values estimated rewards compared to actual rewards recieved - 0.95 is default
       num_epoch: 3
-      shared_critic: false
-      learning_rate_schedule: linear
+      shared_critic: false #If policy and value function share a backbone - What is a backbone?
+      learning_rate_schedule: linear #How the learning rate changes over time - Linear = decay, reaching 0 at max steps - Constant = constant learning rate
       beta_schedule: linear
       epsilon_schedule: linear
     network_settings:
-      normalize: false
-      hidden_units: 128
-      num_layers: 2
-      vis_encode_type: simple
+      normalize: false #Something about normalizing vector inputs in network - False is default
+      hidden_units: 128 #Number of hidden units in each layer of network - Units = nodes? - 128 is default
+      num_layers: 2 #Default value
+      vis_encode_type: simple #How visual inputs are encoded
       memory: null
       goal_conditioning_type: hyper
       deterministic: false
@@ -34,12 +34,12 @@ behaviors:
           memory: null
           goal_conditioning_type: hyper
           deterministic: false
-    init_path: null
-    keep_checkpoints: 5
-    checkpoint_interval: 500000
-    max_steps: 500000
-    time_horizon: 64
-    summary_freq: 50000
+    init_path: null #If we want to initialize training based on a previous model
+    keep_checkpoints: 5 #How many checkpoints to keep in memory, before deleting the oldest - Checkpoints = older versions of model
+    checkpoint_interval: 500000 #How often checkpoints are being created
+    max_steps: 500000 
+    time_horizon: 64 #How many steps before a prediction of overall reward based on agents current state - 64 is default
+    summary_freq: 50000 #How often is training statistics displayed - Number of steps?
     threaded: false
     self_play: null
     behavioral_cloning: null
