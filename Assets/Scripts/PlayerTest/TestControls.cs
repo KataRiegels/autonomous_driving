@@ -19,7 +19,6 @@ public class TestControls : MonoBehaviour
     {
         transform.Rotate(0, currentAngle * currentSpeed * Time.deltaTime, 0);
         transform.Translate(Vector3.forward * currentSpeed * Time.deltaTime);
-
     }
     
     // Method to handle acceleration
@@ -47,8 +46,7 @@ public class TestControls : MonoBehaviour
         currentAngle += currentTurningSpeed * Time.deltaTime;
         //Debug.Log("Desired Angle: " + desiredAngle);
         //Debug.Log("Current Angle: " + currentAngle);
-
-
+        
         foreach (Transform wheel in wheels)
         {
             wheel.localRotation = Quaternion.Euler(0, currentAngle * 2, -90);
@@ -68,5 +66,9 @@ public class TestControls : MonoBehaviour
         currentAngle = 0f;
     }
 
+    public void Freeze()
+    {
+        currentSpeed = 0f;
+    }
 
 }
