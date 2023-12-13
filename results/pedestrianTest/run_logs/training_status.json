@@ -1,0 +1,47 @@
+{
+    "Car3": {
+        "checkpoints": [
+            {
+                "steps": 423816,
+                "file_path": "results\\redlighttest\\Car3\\Car3-423816.onnx",
+                "reward": null,
+                "creation_time": 1702506088.8465288,
+                "auxillary_file_paths": [
+                    "results\\redlighttest\\Car3\\Car3-423816.pt"
+                ]
+            },
+            {
+                "steps": 499946,
+                "file_path": "results\\pedestrianTest\\Car3\\Car3-499946.onnx",
+                "reward": 58.36131674051285,
+                "creation_time": 1702506531.2425652,
+                "auxillary_file_paths": [
+                    "results\\pedestrianTest\\Car3\\Car3-499946.pt"
+                ]
+            },
+            {
+                "steps": 969876,
+                "file_path": "results\\pedestrianTest\\Car3\\Car3-969876.onnx",
+                "reward": 70.70859726667405,
+                "creation_time": 1702507424.010257,
+                "auxillary_file_paths": [
+                    "results\\pedestrianTest\\Car3\\Car3-969876.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 969876,
+            "file_path": "results\\pedestrianTest\\Car3.onnx",
+            "reward": 70.70859726667405,
+            "creation_time": 1702507424.010257,
+            "auxillary_file_paths": [
+                "results\\pedestrianTest\\Car3\\Car3-969876.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "0.30.0",
+        "torch_version": "2.1.0+cpu"
+    }
+}

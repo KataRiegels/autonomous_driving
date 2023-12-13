@@ -117,11 +117,11 @@ GameObject:
   - component: {fileID: 4453108282746398954}
   - component: {fileID: 8123236671303790817}
   - component: {fileID: 7069418225943056250}
-  - component: {fileID: 7120419935590289079}
   - component: {fileID: 1057842427643658597}
+  - component: {fileID: 2929713077451611255}
   m_Layer: 6
   m_Name: RedWall
-  m_TagString: reset
+  m_TagString: redLight
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -212,18 +212,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &7120419935590289079
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4877633584995991929}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0b7537981b2764f4f95dcb2bfb708ef7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!54 &1057842427643658597
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -251,6 +239,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 2
+--- !u!114 &2929713077451611255
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4877633584995991929}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71ee42cdcc286024b8e927d73b35ed1f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5579207519548196973
 GameObject:
   m_ObjectHideFlags: 0
@@ -831,3 +831,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   RedWall: {fileID: 4877633584995991929}
   YellowWall: {fileID: 6038353834925688864}
+  greenTime: 5
+  redTime: 5
+  yellowTime: 2

@@ -3,14 +3,14 @@ using UnityEngine;
 public class Pedestrian : MonoBehaviour
 {
     public float moveSpeed = 3.0f;
-    public float rayLength = 5.0f; // Length of the ray
+    //public float rayLength = 5.0f; // Length of the ray
     private Vector3 targetPosition;
-    private LayerMask carLayerMask; // Layer mask for detecting cars
+    //private LayerMask carLayerMask; // Layer mask for detecting cars
 
-    private void Start()
-    {
-        carLayerMask = LayerMask.GetMask("Car"); // Initialize the car layer mask
-    }
+    //private void Start()
+    //{
+    //    carLayerMask = LayerMask.GetMask("Car"); // Initialize the car layer mask
+    //}
 
     public void SetTarget(Vector3 target)
     {
@@ -22,22 +22,22 @@ public class Pedestrian : MonoBehaviour
         Vector3 directionToTarget = (targetPosition - transform.position).normalized;
 
         // Rotate the pedestrian to face the target position
-        if (directionToTarget != Vector3.zero)
-        {
-            Quaternion targetRotation = Quaternion.LookRotation(directionToTarget);
-            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * moveSpeed);
-        }
+        //if (directionToTarget != Vector3.zero)
+        //{
+        //    Quaternion targetRotation = Quaternion.LookRotation(directionToTarget);
+        //    transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * moveSpeed);
+        //}
 
         // Raycast to check for cars in front of the pedestrian
-        RaycastHit hit;
-        bool isCarDetected = Physics.Raycast(transform.position, transform.forward, out hit, rayLength, carLayerMask);
-        Debug.DrawRay(transform.position, transform.forward * rayLength, isCarDetected ? Color.red : Color.green);
+        //RaycastHit hit;
+        //bool isCarDetected = Physics.Raycast(transform.position, transform.forward, out hit, rayLength, carLayerMask);
+        //Debug.DrawRay(transform.position, transform.forward * rayLength, isCarDetected ? Color.red : Color.green);
 
-        if (isCarDetected)
-        {
-            // If a car is detected, do not move
-            return;
-        }
+        //if (isCarDetected)
+        //{
+        //    // If a car is detected, do not move
+        //    return;
+        //}
 
         // Move towards the target position if no car is detected
         transform.position = Vector3.MoveTowards(transform.position, targetPosition, moveSpeed * Time.deltaTime);

@@ -15,6 +15,7 @@ public class CarAgent4 : Agent
     private TestControls carControls; // Reference to the TestControls script
     private EpisodeManager episodeManager; // Reference to the Episode Manager
     public bool IsActive { get; private set; } // Flag to indicate if the agent is active
+    public bool HasHitGoal { get; private set; } = false;
     private AgentColorManager colorManager;
     private RayCaster rayCaster;
 
@@ -32,22 +33,32 @@ public class CarAgent4 : Agent
     public override void OnEpisodeBegin()
     {
         IsActive = true;
+        HasHitGoal = false;
         // Change color to active
         colorManager?.SetActiveMaterial();
         transform.position = initialPosition;
         transform.rotation = initialRotation;
         carControls.ResetControls();
         closestDistance = Vector3.Distance(transform.localPosition, targetTransform.localPosition);
+        //Debug.DrawLine(transform.localPosition, targetTransform.localPosition, Color.red);
         totalDistanceReward = 0f;
     }
+    // collect observations
+    //public override void CollectObservations(VectorSensor sensor)
+    //{
+        // Add agent's own position
+        //sensor.AddObservation(transform.localPosition);
 
-    public override void CollectObservations(VectorSensor sensor)
-    {
+        // Add the target's position
+        //sensor.AddObservation(targetTransform.localPosition);
 
-    }
+
+        // Add other observations if needed
+    //}
 
     public override void OnActionReceived(ActionBuffers actions)
     {
+        Debug.DrawLine(transform.localPosition, targetTransform.localPosition, Color.green);
         if (!IsActive)  {return;}
         // Extract the actions
         float accelerationInput = Mathf.Clamp(actions.ContinuousActions[0], -1f, 1f);
@@ -70,30 +81,37 @@ public class CarAgent4 : Agent
         continuousActions[0] = Input.GetAxisRaw("Vertical");  // Acceleration
         continuousActions[1] = Input.GetAxisRaw("Horizontal");  // Steering
         continuousActions[2] = Input.GetKey(KeyCode.Space) ? 1f : 0f;  // Braking
-        RewardForGettingCloser();
+        //RewardForGettingCloser();
     }
 
     private void OnTriggerEnter(Collider other)
     {
+        if (!IsActive)  {return;}
         if (other.TryGetComponent<Goal>(out Goal goal)) 
         {
-            AddReward(100f);
-            Debug.Log("Completed task!");
+            AddReward(10f);
+            //Debug.Log("Completed task!");
+            HasHitGoal = true;
             SignalCompletion();
         }
         else if (other.TryGetComponent<RedWall>(out RedWall redwall)) 
         {
-            AddReward(-10f);
+            AddReward(-50f);
+            SignalCompletion();
+        }
+        else if (other.TryGetComponent<RedLight>(out RedLight redlight)) 
+        {
+            AddReward(-50f);
             SignalCompletion();
         }
         else if (other.TryGetComponent<Pedestrian>(out Pedestrian pedestrian)) 
         {
-            AddReward(-10f);
+            AddReward(-50f);
             SignalCompletion();
         }
         else if (other.TryGetComponent<ParkedCar>(out ParkedCar parkedCar)) 
         {
-            AddReward(-10f);
+            AddReward(-50f);
             //Debug.Log("Hit parked Car!");
             SignalCompletion();
         }
@@ -110,11 +128,15 @@ public class CarAgent4 : Agent
             float parallelismRatio = rayCaster.GetParallelismRatio();
 
             // Apply the ratio to the distance reward
-            float reward = (closestDistance - currentDistance) * parallelismRatio; // Adjust reward with ratio
+            float reward = (closestDistance - currentDistance) * 0.5f; // Adjust reward with ratio
+            reward += (closestDistance - currentDistance) * 0.5f * parallelismRatio;
+            //reward += 1f; // Adjust reward with ratio
+            // float reward = (closestDistance - currentDistance) * parallelismRatio; // Adjust reward with ratio
             AddReward(reward);
             closestDistance = currentDistance;
             totalDistanceReward += reward;
         }
+        else {AddReward(-0.01f);}
     }
 
     private void SignalCompletion()
@@ -124,7 +146,7 @@ public class CarAgent4 : Agent
         colorManager?.SetInactiveMaterial();
         // Set current speed of car to 0
         carControls.Freeze();
-        Debug.Log("totalDistanceReward: " + totalDistanceReward);
+        //Debug.Log("totalDistanceReward: " + totalDistanceReward);
     }
 
     public new void StartNewEpisode()
@@ -134,7 +156,7 @@ public class CarAgent4 : Agent
 
     public void EndEpisode()
     {
-        Debug.Log("totalDistanceReward: " + totalDistanceReward);
+        //Debug.Log("totalDistanceReward: " + totalDistanceReward);
         base.EndEpisode();
     }
 }

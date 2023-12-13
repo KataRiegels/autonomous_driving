@@ -1,0 +1,65 @@
+{
+    "Car3": {
+        "checkpoints": [
+            {
+                "steps": 2499942,
+                "file_path": "results\\Curriculum\\Car3\\Car3-2499942.onnx",
+                "reward": 226.69649152755738,
+                "creation_time": 1702494543.6768517,
+                "auxillary_file_paths": [
+                    "results\\Curriculum\\Car3\\Car3-2499942.pt"
+                ]
+            },
+            {
+                "steps": 2999990,
+                "file_path": "results\\Curriculum\\Car3\\Car3-2999990.onnx",
+                "reward": 239.61978022257486,
+                "creation_time": 1702495087.3129208,
+                "auxillary_file_paths": [
+                    "results\\Curriculum\\Car3\\Car3-2999990.pt"
+                ]
+            },
+            {
+                "steps": 3499955,
+                "file_path": "results\\Curriculum\\Car3\\Car3-3499955.onnx",
+                "reward": 185.3467441334444,
+                "creation_time": 1702495638.894271,
+                "auxillary_file_paths": [
+                    "results\\Curriculum\\Car3\\Car3-3499955.pt"
+                ]
+            },
+            {
+                "steps": 3999998,
+                "file_path": "results\\Curriculum\\Car3\\Car3-3999998.onnx",
+                "reward": 149.0259216308594,
+                "creation_time": 1702496193.3433313,
+                "auxillary_file_paths": [
+                    "results\\Curriculum\\Car3\\Car3-3999998.pt"
+                ]
+            },
+            {
+                "steps": 4222370,
+                "file_path": "results\\Curriculum\\Car3\\Car3-4222370.onnx",
+                "reward": null,
+                "creation_time": 1702496506.5168593,
+                "auxillary_file_paths": [
+                    "results\\Curriculum\\Car3\\Car3-4222370.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 4222370,
+            "file_path": "results\\Curriculum\\Car3.onnx",
+            "reward": null,
+            "creation_time": 1702496506.5168593,
+            "auxillary_file_paths": [
+                "results\\Curriculum\\Car3\\Car3-4222370.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "0.30.0",
+        "torch_version": "2.1.0+cpu"
+    }
+}

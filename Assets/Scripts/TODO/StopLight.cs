@@ -6,7 +6,8 @@ public class StopLight : MonoBehaviour
 {
     public GameObject RedWall; // Reference to the RedWall child object
     public GameObject YellowWall; // Reference to the YellowWall child object
-    private bool isRed = false; // Tracks the state of the light
+    private enum LightState { Red, Yellow, Green }
+    private LightState currentState;
     public float greenTime = 20;
     public float redTime = 5;
     public float yellowTime = 2;
@@ -15,6 +16,7 @@ public class StopLight : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        SetRandomInitialState();
         lightControlCoroutine = StartCoroutine(LightControl());
     }
 
@@ -22,45 +24,59 @@ public class StopLight : MonoBehaviour
     {
         while (true) // Infinite loop
         {
-            if (isRed)
+            switch (currentState)
             {
-                // Turn off RedWall
-                RedWall.SetActive(false);
+                case LightState.Green:
+                    // Green phase (both lights off)
+                    RedWall.SetActive(false);
+                    YellowWall.SetActive(false);
+                    yield return new WaitForSeconds(greenTime);
+                    currentState = LightState.Yellow;
+                    break;
 
-                // Turn on YellowWall for the period before green
-                YellowWall.SetActive(true);
-                yield return new WaitForSeconds(yellowTime);
+                case LightState.Yellow:
+                    // Yellow phase
+                    YellowWall.SetActive(true);
+                    RedWall.SetActive(false);
+                    yield return new WaitForSeconds(yellowTime);
+                    currentState = LightState.Red;
+                    break;
 
-                // Turn off YellowWall and keep for green duration
-                YellowWall.SetActive(false);
-                yield return new WaitForSeconds(greenTime - yellowTime); // Adjust green time
-
-                isRed = false;
-            }
-            else
-            {
-                // Turn on YellowWall for the period before red
-                YellowWall.SetActive(true);
-                yield return new WaitForSeconds(yellowTime);
-
-                // Turn off YellowWall and turn on RedWall
-                YellowWall.SetActive(false);
-                RedWall.SetActive(true);
-                yield return new WaitForSeconds(redTime + yellowTime); // Adjust red time to include yellow phase
-
-                isRed = true;
+                case LightState.Red:
+                    // Red phase
+                    RedWall.SetActive(true);
+                    YellowWall.SetActive(false);
+                    yield return new WaitForSeconds(redTime);
+                    currentState = LightState.Green;
+                    break;
             }
         }
     }
+
+    private void SetRandomInitialState()
+    {
+        float randomValue = Random.value;
+        if (randomValue < 0.33f)
+        {
+            currentState = LightState.Green;
+        }
+        else if (randomValue < 0.66f)
+        {
+            currentState = LightState.Yellow;
+        }
+        else
+        {
+            currentState = LightState.Red;
+        }
+    }
+
     public void ResetStopLight()
     {
         if (lightControlCoroutine != null)
         {
             StopCoroutine(lightControlCoroutine);
         }
-        isRed = false;
-        RedWall.SetActive(false);
-        YellowWall.SetActive(false);
+        SetRandomInitialState();
         lightControlCoroutine = StartCoroutine(LightControl());
     }
 }

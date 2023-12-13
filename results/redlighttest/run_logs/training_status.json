@@ -1,0 +1,29 @@
+{
+    "Car3": {
+        "checkpoints": [
+            {
+                "steps": 423816,
+                "file_path": "results\\redlighttest\\Car3\\Car3-423816.onnx",
+                "reward": null,
+                "creation_time": 1702506088.8465288,
+                "auxillary_file_paths": [
+                    "results\\redlighttest\\Car3\\Car3-423816.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 423816,
+            "file_path": "results\\redlighttest\\Car3.onnx",
+            "reward": null,
+            "creation_time": 1702506088.8465288,
+            "auxillary_file_paths": [
+                "results\\redlighttest\\Car3\\Car3-423816.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "0.30.0",
+        "torch_version": "2.1.0+cpu"
+    }
+}

@@ -8,6 +8,8 @@ public class EpisodeManager : MonoBehaviour
     public StopLight stopLight;
     public PedestrianManager pedestrianManager; // Reference to the PedestrianManager
     public ParkedCarManager parkedCarManager; // Reference to the ParkedCar script
+    public Goal goalObject;
+    //public GoalControl goalObject2;
     private bool episodeInProgress = true;
     private float episodeStartTime;
     [SerializeField] private float maxEpisodeDuration = 30.0f; // Maximum duration of an episode
@@ -42,6 +44,7 @@ public class EpisodeManager : MonoBehaviour
 
     private void EndEpisodeForAllAgents()
     {
+        CheckAllAgentsHitGoal();
         foreach (var agent in agents)
         {
             agent.EndEpisode();
@@ -51,6 +54,8 @@ public class EpisodeManager : MonoBehaviour
 
     private void StartNewEpisode()
     {
+        goalObject.SetGoalLocation();
+        //goalObject2.SetGoalLocation();
         foreach (var agent in agents)
         {
             agent.StartNewEpisode();
@@ -59,5 +64,27 @@ public class EpisodeManager : MonoBehaviour
         parkedCarManager.RepositionParkedCars();
         episodeInProgress = true;
         episodeStartTime = Time.time;
+        GameControl.IncrementEpisode();
+    }
+    private void CheckAllAgentsHitGoal()
+    {
+        bool allAgentsHitGoal = true;
+        foreach (var agent in agents)
+        {
+            if (!agent.HasHitGoal)
+            {
+                allAgentsHitGoal = false;
+                break; // If one agent hasn't hit the goal, no need to check further
+            }
+        }
+
+        if (allAgentsHitGoal)
+        {
+            GameControl.IncrementSuccession();
+        }
+        else
+        {
+            GameControl.ResetSuccession();
+        }
     }
 }

@@ -12,6 +12,7 @@ TagManager:
   - parkedCar
   - yellow
   - pedestrian
+  - redLight
   layers:
   - Default
   - TransparentFX
