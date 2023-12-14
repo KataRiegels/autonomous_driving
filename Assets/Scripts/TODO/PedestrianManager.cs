@@ -100,4 +100,5 @@ public class PedestrianManager : MonoBehaviour
         StopAndClearPedestrians();
         pedestrianSpawningCoroutine = StartCoroutine(SpawnPedestrians());
     }
+
 }

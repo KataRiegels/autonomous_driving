@@ -1,0 +1,56 @@
+{
+    "Car3": {
+        "checkpoints": [
+            {
+                "steps": 0,
+                "file_path": "results\\Control1\\Car3\\Car3-0.onnx",
+                "reward": null,
+                "creation_time": 1702565418.2582371,
+                "auxillary_file_paths": [
+                    "results\\Control1\\Car3\\Car3-0.pt"
+                ]
+            },
+            {
+                "steps": 499985,
+                "file_path": "results\\Control1\\Car3\\Car3-499985.onnx",
+                "reward": null,
+                "creation_time": 1702566379.7359316,
+                "auxillary_file_paths": [
+                    "results\\Control1\\Car3\\Car3-499985.pt"
+                ]
+            },
+            {
+                "steps": 999979,
+                "file_path": "results\\Control1\\Car3\\Car3-999979.onnx",
+                "reward": null,
+                "creation_time": 1702567288.9071414,
+                "auxillary_file_paths": [
+                    "results\\Control1\\Car3\\Car3-999979.pt"
+                ]
+            },
+            {
+                "steps": 1091215,
+                "file_path": "results\\Control1\\Car3\\Car3-1091215.onnx",
+                "reward": null,
+                "creation_time": 1702567452.2234385,
+                "auxillary_file_paths": [
+                    "results\\Control1\\Car3\\Car3-1091215.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 1091215,
+            "file_path": "results\\Control1\\Car3.onnx",
+            "reward": null,
+            "creation_time": 1702567452.2234385,
+            "auxillary_file_paths": [
+                "results\\Control1\\Car3\\Car3-1091215.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "0.30.0",
+        "torch_version": "2.1.0+cpu"
+    }
+}
