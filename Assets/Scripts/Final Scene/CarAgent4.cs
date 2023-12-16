@@ -96,7 +96,7 @@ public class CarAgent4 : Agent
         }
         else if (other.TryGetComponent<RedWall>(out RedWall redwall)) 
         {
-            AddReward(-50f);
+            AddReward(-10f);
             SignalCompletion();
         }
         else if (other.TryGetComponent<RedLight>(out RedLight redlight)) 
@@ -106,7 +106,7 @@ public class CarAgent4 : Agent
         }
         else if (other.TryGetComponent<Pedestrian>(out Pedestrian pedestrian)) 
         {
-            AddReward(-50f);
+            AddReward(-75f);
             SignalCompletion();
         }
         else if (other.TryGetComponent<ParkedCar>(out ParkedCar parkedCar)) 

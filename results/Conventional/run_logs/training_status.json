@@ -1,0 +1,65 @@
+{
+    "Car3": {
+        "checkpoints": [
+            {
+                "steps": 8499990,
+                "file_path": "results\\Conventional\\Car3\\Car3-8499990.onnx",
+                "reward": 77.16575427388035,
+                "creation_time": 1702734897.4081688,
+                "auxillary_file_paths": [
+                    "results\\Conventional\\Car3\\Car3-8499990.pt"
+                ]
+            },
+            {
+                "steps": 8999990,
+                "file_path": "results\\Conventional\\Car3\\Car3-8999990.onnx",
+                "reward": 74.83957243359778,
+                "creation_time": 1702736053.0780134,
+                "auxillary_file_paths": [
+                    "results\\Conventional\\Car3\\Car3-8999990.pt"
+                ]
+            },
+            {
+                "steps": 9499980,
+                "file_path": "results\\Conventional\\Car3\\Car3-9499980.onnx",
+                "reward": 68.84105784763662,
+                "creation_time": 1702737187.9561367,
+                "auxillary_file_paths": [
+                    "results\\Conventional\\Car3\\Car3-9499980.pt"
+                ]
+            },
+            {
+                "steps": 9999956,
+                "file_path": "results\\Conventional\\Car3\\Car3-9999956.onnx",
+                "reward": 83.81293606539386,
+                "creation_time": 1702738303.5057204,
+                "auxillary_file_paths": [
+                    "results\\Conventional\\Car3\\Car3-9999956.pt"
+                ]
+            },
+            {
+                "steps": 10000060,
+                "file_path": "results\\Conventional\\Car3\\Car3-10000060.onnx",
+                "reward": 84.19477920532226,
+                "creation_time": 1702738303.546567,
+                "auxillary_file_paths": [
+                    "results\\Conventional\\Car3\\Car3-10000060.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 10000060,
+            "file_path": "results\\Conventional\\Car3.onnx",
+            "reward": 84.19477920532226,
+            "creation_time": 1702738303.546567,
+            "auxillary_file_paths": [
+                "results\\Conventional\\Car3\\Car3-10000060.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "0.30.0",
+        "torch_version": "2.1.0+cpu"
+    }
+}
